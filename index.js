@@ -16,8 +16,8 @@ app.get('/', (req, res) => {
 
 
 const MongoClient = require('mongodb').MongoClient;
-
-const uri = "mongodb+srv://samir:bJFUcLzwUcQihu1C@cluster0.xaiaa.mongodb.net/agencydb?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.xaiaa.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const uri = "mongodb+srv://samir:bJFUcLzwUcQihu1C@cluster0.xaiaa.mongodb.net/agencydb?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true  });
 client.connect(err => {
   
@@ -76,7 +76,7 @@ const productStoreCollection = client.db("agencydb").collection("productStore");
 
     })
 
-// app.listen(process.env.PORT || port)
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
+app.listen(process.env.PORT || port)
+// app.listen(port, () => {
+//     console.log(`Example app listening at http://localhost:${port}`)
+//   })
